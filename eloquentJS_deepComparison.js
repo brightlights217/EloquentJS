@@ -22,24 +22,25 @@ function deepEqual(argument1, argument2) {
 		return false;
 	}
 
-	var containerArg1 = 0;
-	var containerArg2 = 0;
+	var containerArg1 = 0; // initialize first container for storing the number of properties
+	var containerArg2 = 0; // initialize second container for storing the number of properties
 
-	for (var i in argument1) {
+	for (var i in argument1) { // count how many properties is in argument1
 		containerArg1 += 1;
+		//console.log(i);
 	}
-	for (var i in argument2) {
-		containerArg1 += 1;
-		if (!(i in argument1) || !deepEqual(argument1[i], argument2[i])) {
-			return false;
+	for (var i in argument2) { // count how many properties is in argument2
+		containerArg2 += 1;
+		if (!(i in argument1) || !deepEqual(argument1[i], argument2[i])) { // if a property in argument2 is not in argument1, return false.
+			return false;                                                  // if i is not in argument1, then use recursive to compare properites and values
 		}
 	}
 	return containerArg1 == containerArg2;
 }
 
 var obj = {here: {is: "an"}, object: 2};
-console.log(deepEqual(obj, obj));
-console.log(deepEqual(obj, {here: 1, object: 2}));
+//console.log(deepEqual(obj, obj));
+//console.log(deepEqual(obj, {here: 1, object: 2}));
 console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
 
 
